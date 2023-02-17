@@ -40,7 +40,7 @@ export const Signup = () => {
     <div className="flex items-center justify-center w-full h-screen bg-gray-200 space-y-2">
       <form
         onSubmit={handleSubmit}
-        className=" flex flex-col px-5 py-40  bg-white rounded-md shadow-md w-96"
+        className=" flex flex-col px-10 py-16  bg-white rounded-md shadow-md "
       >
         <label htmlFor="name">Name</label>
         <input

@@ -10,24 +10,23 @@ export const Searchbar = () => {
       <Link className="text-purple-800 text-xl  " to="/">
         <AiOutlineHome />
       </Link>
-      <div className="text-black sm:flex hidden">
+      <div className="text-black sm:flex hidden space-x-16 font-bold">
         <Link to="htmlvideos">HTML</Link>
         <Link to="cssvideos">CSS</Link>
         <Link to="tailwindcssvideos">TailwindCss</Link>
         <Link to="reactjsvideos">React Js</Link>
       </div>
-      <div>
+      <div className="flex justify-between">
         <h1 className="text-black" onClick={() => setinput(!input)}>
           <FiSearch />
         </h1>
 
         {input && (
           <input
-            className="border-solid border-2 text-purple-800 border-sky-500   px-0 py-1 rounded-md"
+            className="border-solid border-2 block right-10 md:right-10 absolute w-48 md:w-60 h-8 decoration-auto text-purple-800 border-purple-800 focus:ring-2 focus:ring-purple-800 px-0 py-1 rounded-md"
             type="text"
             placeholder="Search"
           />
-          
         )}
       </div>
     </div>

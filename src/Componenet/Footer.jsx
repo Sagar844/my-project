@@ -2,7 +2,7 @@ import React from "react";
 
 export const Footer = () => {
   return (
-    <div className="mt-10 bg-gray-500 py-4">
+    <div className=" bg-gray-500 py-4 relative mt-96" >
       <img
         className="w-10"
         src="https://codeyogi.io/images/favicon-16.png"

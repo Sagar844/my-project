@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { data } from "../App";
 import { CodeYogivideo } from "./CodeYogivideo";
 
 export const Courses = () => {
+  const  {menu ,setmenu} = useContext(data)
   return (
-    <div className="bg-slate-800">
+    <div onClick={() => setmenu(!menu)} className="bg-slate-800">
       <h1 className="grow-1 flex items-center mt-40 mb-10 text-white font-mono  text-xl justify-center">
         SOFTWARE ENGINEERING TRAINING
       </h1>

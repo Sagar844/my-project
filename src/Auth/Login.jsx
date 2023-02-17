@@ -3,6 +3,7 @@ import { useFormik } from "formik";
 import React from "react";
 import { Link } from "react-router-dom";
 import * as Yup from "yup";
+import LoginwithGoggle from "./LoginwithGoggle";
 
 const schema = Yup.object().shape({
   email: Yup.string().required("reqied").email("email"),
@@ -12,9 +13,9 @@ const schema = Yup.object().shape({
 export const Login = () => {
   const callapi = (values) => {
     axios
-      .get("https://myeasykart.codeyogi.io/login",{
-        email:values.email,
-        password:values.mypassword,
+      .get("https://myeasykart.codeyogi.io/login", {
+        email: values.email,
+        password: values.mypassword,
       })
       .then((response) => {
         const { user, token } = response.data;
@@ -36,11 +37,12 @@ export const Login = () => {
     <div className="flex items-center justify-center w-full h-screen bg-gray-200 space-y-2">
       <form
         onSubmit={handleSubmit}
-        className=" flex flex-col px-5 py-40  bg-white rounded-md shadow-md w-96"
+        className=" flex flex-col px-10 py-16  bg-white rounded-md shadow-md "
       >
+        <LoginwithGoggle />
         <label htmlFor="email">Email</label>
         <input
-          className="border-solid border-2 border-sky-500 rounded-md"
+          className="border-solid border-2 border-sky-500 rounded-sm"
           type="text"
           placeholder="Enter Your Email"
           required
