@@ -1,8 +1,9 @@
 import axios from "axios";
 import { useFormik } from "formik";
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import * as Yup from "yup";
+import { popup } from "../App";
 import LoginwithGoggle from "./LoginwithGoggle";
 
 const schema = Yup.object().shape({
@@ -11,6 +12,16 @@ const schema = Yup.object().shape({
 });
 
 export const Login = () => {
+  const { model, setmodel } = useContext(popup);
+
+ 
+const handle = ( ) => { 
+  setmodel(false)
+}
+
+  const handleclose = (e) => {
+    if (e.target.id === "container") setmodel(false);
+  };
   const callapi = (values) => {
     axios
       .get("https://myeasykart.codeyogi.io/login", {
@@ -33,13 +44,23 @@ export const Login = () => {
     validationSchema: schema,
   });
 
+  if (!model) return null;
+
   return (
-    <div className="flex items-center justify-center w-full h-screen bg-gray-200 space-y-2">
+    <div
+      id="container"
+      onClick={handleclose}
+      className="fixed inset-0  bg-opacity-30 backdrop-blur-sm flex justify-center items-center w-full h-screen  space-y-2"
+    >
+      
+      
       <form
         onSubmit={handleSubmit}
         className=" flex flex-col px-10 py-16  bg-white rounded-md shadow-md "
-      >
+      > 
+      <button className="flex justify-end " onClick={handle}>x</button>
         <LoginwithGoggle />
+       
         <label htmlFor="email">Email</label>
         <input
           className="border-solid border-2 border-sky-500 rounded-sm"
@@ -65,18 +86,19 @@ export const Login = () => {
         />
         <button
           type="submit"
-          className="bg-purple-800  rounded-sm py-1  text-white mt-5"
+          className="bg-purple-800  rounded-full py-1  text-white mt-5"
         >
           Login
         </button>
 
         <Link
-          className="bg-purple-800  rounded-sm py-1 text-center text-white mt-5"
+          className="bg-purple-800  rounded-full py-1 text-center text-white mt-5"
           to="/signup"
         >
           {" "}
           Signup{" "}
         </Link>
+
       </form>
     </div>
   );

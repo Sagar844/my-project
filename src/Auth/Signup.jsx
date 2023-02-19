@@ -1,7 +1,8 @@
 import axios from "axios";
 import { useFormik } from "formik";
-import React from "react";
+import React,{useContext} from "react";
 import * as Yup from "yup";
+import { popup2 } from "../App";
 
 const schema = Yup.object().shape({
   email: Yup.string().required("reqied").email("email"),
@@ -9,6 +10,16 @@ const schema = Yup.object().shape({
 });
 
 export const Signup = () => {
+  const {sigupop ,setpop } = useContext(popup2);
+
+  const handle = () => {
+    setpop(false);
+  };
+
+  const handleclose = (e) => {
+    if (e.target.id === "container") setpop(false);
+  };
+
   const callapi = (values) => {
     console.log(values);
     axios
@@ -36,12 +47,15 @@ export const Signup = () => {
     validationSchema: schema,
   });
 
+
+  if (!sigupop) return null;
   return (
-    <div className="flex items-center justify-center w-full h-screen bg-gray-200 space-y-2">
+    <div   id="container" onClick={handleclose} className="fixed inset-0 bg-opacity-30 backdrop-blur-sm flex justify-center  h-screen space-y-2">
       <form
         onSubmit={handleSubmit}
-        className=" flex flex-col px-10 py-16  bg-white rounded-md shadow-md "
+        className=" flex flex-col  justify-center bg-white px-10 my-40 rounded-md shadow-md "
       >
+        <button onClick={handle}>x</button>
         <label htmlFor="name">Name</label>
         <input
           className="border-solid border-2 border-sky-500 rounded-md"
@@ -81,7 +95,7 @@ export const Signup = () => {
         {errors.mypassword}
         <button
           type="submit"
-          className="bg-purple-800  rounded-sm py-1  text-white mt-5"
+          className="bg-purple-800  rounded-full py-1  text-white mt-5"
         >
           Singup
         </button>

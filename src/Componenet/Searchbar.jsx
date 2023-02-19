@@ -6,11 +6,11 @@ import { Link } from "react-router-dom";
 export const Searchbar = () => {
   const [input, setinput] = useState(false);
   return (
-    <div className="flex  justify-between mt-5">
+    <div className="flex  justify-between mt-5 mx-5">
       <Link className="text-purple-800 text-xl  " to="/">
         <AiOutlineHome />
       </Link>
-      <div className="text-black sm:flex hidden space-x-16 font-bold">
+      <div className=" sm:flex hidden text-purple-800 space-x-16 font-bold">
         <Link to="htmlvideos">HTML</Link>
         <Link to="cssvideos">CSS</Link>
         <Link to="tailwindcssvideos">TailwindCss</Link>

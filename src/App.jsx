@@ -15,30 +15,42 @@ import { TailwindCss } from "./NavbarComponenet/TailwindCss";
 import { createContext } from "react";
 
 const data = createContext();
+const popup = createContext();
+const popup2 = createContext();
 
 function App() {
   const [menu, setmenu] = useState(false);
+  const [model, setmodel] = useState(false);
+  const [sigupop, setpop] = useState(false);
+
   const menus = { menu, setmenu };
+  const models = { model, setmodel };
+  const signups = { sigupop, setpop };
 
   return (
     <div>
-      <data.Provider value={menus}>
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Courses />} />
-          <Route path="/login" element={<Login />}></Route>
-          <Route path="/signup" element={<Signup />}></Route>
-          <Route path="/premium" element={<PremiumCourses />} />
-          <Route path="/cssvideos" element={<Css />} />
-          <Route path="/htmlvideos" element={<Html />} />
-          <Route path="/reactjsvideos" element={<Reactjs />} />
-          <Route path="/tailwindcssvideos" element={<TailwindCss />} />
-        </Routes>
-        <Footer />
-      </data.Provider>
+      <popup2.Provider value={signups}>
+        <popup.Provider value={models}>
+          <data.Provider value={menus}>
+            <Navbar />
+            <Routes>
+              <Route path="/" element={<Courses />} />
+
+              <Route path="/premium" element={<PremiumCourses />} />
+              <Route path="/cssvideos" element={<Css />} />
+              <Route path="/htmlvideos" element={<Html />} />
+              <Route path="/reactjsvideos" element={<Reactjs />} />
+              <Route path="/tailwindcssvideos" element={<TailwindCss />} />
+            </Routes>
+            <Footer />
+            <Signup />
+            <Login />
+          </data.Provider>
+        </popup.Provider>
+      </popup2.Provider>
     </div>
   );
 }
 
 export default App;
-export { data };
+export { data, popup, popup2 };
